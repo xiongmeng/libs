@@ -1,0 +1,118 @@
+<configuration xmlns="HTTP://WWW.VXR.IT/LOG4PHP/">
+    <!-- 用于debug的appender-->
+    <appender name="debug" class="LoggerAppenderDailyFile">
+        <param name="file" value="/var/log/apiservice/CPG/debug.%s.log" />
+
+        <layout class="LoggerLayoutPattern">
+            <param name="ConversionPattern" value="%d{Y-m-d H:i:s} [%p] %c: %m%n" />
+        </layout>
+
+        <filter class="LoggerFilterLevelRange">
+            <param name="levelMin" value="trace" />
+            <param name="levelMax" value="debug" />
+        </filter>
+    </appender>
+
+    <!-- 用于error的appender-->
+    <appender name="error" class="LoggerAppenderDailyFile">
+        <param name="file" value="/var/log/apiservice/CPG/error.%s.log" />
+
+        <layout class="LoggerLayoutPattern">
+            <param name="ConversionPattern" value="%d{Y-m-d H:i:s} [%p] %c: %m%n" />
+        </layout>
+
+        <filter class="LoggerFilterLevelRange">
+            <param name="levelMin" value="warn" />
+            <param name="levelMax" value="fatal" />
+        </filter>
+    </appender>
+
+    <!-- 用于info的appender-->
+    <appender name="info" class="LoggerAppenderDailyFile">
+        <param name="file" value="/var/log/apiservice/CPG/info.%s.log" />
+
+        <layout class="LoggerLayoutPattern">
+            <param name="ConversionPattern" value="%d{Y-m-d H:i:s} [%p] %c: %m%n" />
+        </layout>
+
+        <filter class="LoggerFilterLevelRange">
+            <param name="levelMin" value="info" />
+            <param name="levelMax" value="info" />
+        </filter>
+    </appender>
+
+    <!-- root 的设置-->
+    <root>
+        <level value="TRACE" />
+        <appender_ref ref="debug" />
+        <appender_ref ref="info" />
+        <appender_ref ref="error" />
+    </root>
+
+    <!--以上 为 配置 root ，请不要动，谢谢！-->
+
+
+    <!--campaign 的日志输出设置 start-->
+    <appender name="campaign" class="LoggerAppenderDailyFile">
+        <param name="file" value="/var/log/apiservice/CPG/campaign.%s.log" />
+
+        <layout class="LoggerLayoutPattern">
+            <param name="ConversionPattern" value="%d{Y-m-d H:i:s} [%p] %c: %m%n" />
+        </layout>
+
+        <filter class="LoggerFilterLevelRange">
+            <param name="levelMin" value="info" />
+            <param name="levelMax" value="info" />
+        </filter>
+    </appender>
+
+    <!--campaign打开继承-->
+    <logger name="campaign" additivity="true">
+        <level value="trace"/>
+        <appender_ref ref="campaign" />
+    </logger>
+    <!--campaign 的日志输出设置 end-->
+
+    <!--order 的日志输出设置 start-->
+    <appender name="order" class="LoggerAppenderDailyFile">
+        <param name="file" value="/var/log/apiservice/CPG/order.%s.log" />
+
+        <layout class="LoggerLayoutPattern">
+            <param name="ConversionPattern" value="%d{Y-m-d H:i:s} [%p] %c: %m%n" />
+        </layout>
+
+        <filter class="LoggerFilterLevelRange">
+            <param name="levelMin" value="info" />
+            <param name="levelMax" value="info" />
+        </filter>
+    </appender>
+
+    <!--order打开继承-->
+    <logger name="order" additivity="true">
+        <level value="trace"/>
+        <appender_ref ref="order" />
+    </logger>
+    <!--order 的日志输出设置 end-->
+
+    <!--pinggu 的日志输出设置 start-->
+    <appender name="pinggu" class="LoggerAppenderDailyFile">
+        <param name="file" value="/var/log/apiservice/CPG/pinggu.%s.log" />
+
+        <layout class="LoggerLayoutPattern">
+            <param name="ConversionPattern" value="%d{Y-m-d H:i:s} [%p] %c: %m%n" />
+        </layout>
+
+        <filter class="LoggerFilterLevelRange">
+            <param name="levelMin" value="info" />
+            <param name="levelMax" value="info" />
+        </filter>
+    </appender>
+
+    <!-- pinggu 打开继承-->
+    <logger name="pinggu" additivity="true">
+        <level value="trace"/>
+        <appender_ref ref="pinggu" />
+    </logger>
+    <!-- pinggu 的日志输出设置 end-->
+
+</configuration>
