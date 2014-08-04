@@ -15,6 +15,7 @@ class Finance
     /**
      * 使用原因
      */
+    const PURPOSE_ACCOUNT = 1;//默认账户
     const PURPOSE_POINTS = 2;//积分
 
     /**
@@ -28,8 +29,16 @@ class Finance
     //关联类型
     const RELATION_REVERSAL = -1; //撤销
     const RELATION_BOOKING = 1; //预定
-    const RELATION_CANCEL_BOOKING = 6;//取消预定
+    const RELATION_MEMBERFEE = 2; //缴纳会籍费
+    const RELATION_SUBOUT = 3; //分账支出方
+    const RELATION_SUBIN = 4; //分账支入方
     const RELATION_RECHARGE = 5;//充值
+    const RELATION_CANCEL_BOOKING = 6;//取消预定
+    const RELATION_PARTNER_COACH = 7;//陪练教练收入
+    const RELATION_PARTNER_STUDENT = 8;//陪练学员支出
+    const RELATION_TRAIN_STUDENT = 9;//培训费学员支出
+    const RELATION_CUSTOM_IN = 10;//自定义费用得钱方
+    const RELATION_CUSTOM_OUT = 11;//自定义费用出钱方
 
     //账户类型
     const ACCOUNT_BALANCE = 1;  //余额

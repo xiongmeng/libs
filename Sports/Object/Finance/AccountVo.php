@@ -38,6 +38,18 @@ class AccountVo extends Base
         return $this->createdTime;
     }
 
+    protected $userId = null;
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+    protected $purpose = null;
+    public function getPurpose()
+    {
+        return $this->purpose;
+    }
+
     public function getAvailableAmount()
     {
         return $this->getBalance() + $this->getCredit() - $this->getFreeze();

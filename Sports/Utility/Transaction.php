@@ -1,5 +1,5 @@
 <?php
-namespace ApiUtility\Helper;
+namespace Sports\Utility;
 
 use Zend\Db\Adapter\Adapter as DbAdapter;
 use Zend\Db\Adapter\Adapter;

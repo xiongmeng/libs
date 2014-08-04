@@ -6,6 +6,7 @@ use Sports\Constant\Sms;
 use Sports\Exception\LogicException;
 use Sports\Exception\ParamsInvalidException;
 use Sports\MetaData\MetaDataClient;
+use Sports\Sms\QueueService;
 use Zend\Cache\Storage\Adapter\Dba;
 use Zend\Db\Adapter\Adapter;
 use Zend\Db\TableGateway\TableGateway;
@@ -37,5 +38,31 @@ class SmsHelper
         ));
 
         return $oDbTable->getLastInsertValue();
+    }
+
+    /**
+     * 添加到短信队列中
+     * @param $sPhone
+     * @param $sMeg
+     * @param $iUserId
+     * @param int $iChannelId
+     * @return int
+     */
+    public static function sendAsync($sPhone, $sMeg, $iUserId, $iChannelId = Sms::CHANNEL_BAIWU)
+    {
+        return self::pushQueue($sPhone, $sMeg, $iUserId, $iChannelId);
+    }
+
+    /**
+     * @param $sPhone
+     * @param $sMeg
+     * @param $iUserId
+     * @param int $iChannelId
+     */
+    public static function sendSync($sPhone, $sMeg, $iUserId, $iChannelId = Sms::CHANNEL_BAIWU)
+    {
+        SmsHelper::pushQueue($sPhone, $sMeg, $iUserId, $iChannelId);
+        $oSendService = new QueueService(DBHelper::masterAdapterFromConfigSingle());
+        $oSendService->sendLoop(10);
     }
 }

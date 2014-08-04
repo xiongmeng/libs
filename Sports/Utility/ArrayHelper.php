@@ -1,5 +1,5 @@
 <?php
-namespace ApiUtility\Helper;
+namespace Sports\Utility;
 
 class ArrayHelper
 {
