@@ -85,6 +85,9 @@ class ReportService extends BaseService
             !(isset($aValues[1]) && strlen($aValues[1])) && $aValues[1] = PHP_INT_MAX;
             $oWhere->between('b.billing_created_time', abs(intval($aValues[0])), abs(intval($aValues[1])));
         }
+        if(isset($aQueries['relation_id'])){
+            $oWhere->equalTo('relation_id', $aQueries['relation_id']);
+        }
         if(isset($aQueries['relation_type'])){
             is_array($aQueries['relation_type']) ?
                 $oWhere->in('b.relation_type', $aQueries['relation_type']) :

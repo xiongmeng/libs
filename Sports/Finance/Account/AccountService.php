@@ -239,13 +239,16 @@ class AccountService extends BaseService
     private function createBalanceBilling(
         AccountObject $oOriAccount, AccountObject $oCurAccount, ActionObject $oAction)
     {
+        $beforeAmount = $oOriAccount->getBalance();
+        $curAmount = $oCurAccount->getBalance();
+
         $oBilling = new BillingObject();
         $oBilling->setAccountId($oCurAccount->getId())
             ->setType(Finance::ACCOUNT_BALANCE)
             ->setActionId($oAction->getId())
-            ->setAccountBefore($oOriAccount->getBalance())
-            ->setAccountChange($oAction->getAmount())
-            ->setAccountAfter($oCurAccount->getBalance())
+            ->setAccountBefore($beforeAmount)
+            ->setAccountChange(($curAmount - $beforeAmount >= 0 ? 1 : -1) * $oAction->getAmount())
+            ->setAccountAfter($curAmount)
             ->setRelationId($oAction->getRelationId())
             ->setRelationType($oAction->getRelationType());
 
