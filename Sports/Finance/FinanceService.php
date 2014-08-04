@@ -40,7 +40,7 @@ class FinanceService extends BaseService
     /**
      * @param $iUserId
      * @param $ePurpose
-     * @return Account\AccountObject|null
+     * @return \Sports\Finance\Account\AccountObject|null
      */
     public function getUserAccount($iUserId, $ePurpose)
     {
