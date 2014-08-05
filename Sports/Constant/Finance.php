@@ -39,8 +39,24 @@ class Finance
     const RELATION_TRAIN_STUDENT = 9;//培训费学员支出
     const RELATION_CUSTOM_IN = 10;//自定义费用得钱方
     const RELATION_CUSTOM_OUT = 11;//自定义费用出钱方
+    const RELATION_BUY_INSTANT_ORDER = 12;//购买即时订单
 
     //账户类型
     const ACCOUNT_BALANCE = 1;  //余额
     const ACCOUNT_FREEZE = 2;   //冻结金额
+
+    //
+    static public $relationTypeOptions = array(
+        self::RELATION_BOOKING => "预订场地：",
+        self::RELATION_MEMBERFEE => "充值",
+        self::RELATION_SUBOUT => "参与分账：",
+        self::RELATION_SUBIN => "发起分账：",
+        self::RELATION_CANCEL_BOOKING => "取消场地：",
+        self::RELATION_PARTNER_COACH => "提供陪练：",
+        self::RELATION_PARTNER_STUDENT => "参加陪练：",
+        self::RELATION_TRAIN_STUDENT => "参加培训：",
+        self::RELATION_CUSTOM_IN => "费用增加：",
+        self::RELATION_CUSTOM_OUT => "费用扣除：",
+        self::RELATION_BUY_INSTANT_ORDER => '购买场地'
+    );
 }
