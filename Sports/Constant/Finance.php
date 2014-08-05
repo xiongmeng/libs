@@ -51,6 +51,7 @@ class Finance
         self::RELATION_MEMBERFEE => "充值",
         self::RELATION_SUBOUT => "参与分账：",
         self::RELATION_SUBIN => "发起分账：",
+        self::RELATION_RECHARGE => '',
         self::RELATION_CANCEL_BOOKING => "取消场地：",
         self::RELATION_PARTNER_COACH => "提供陪练：",
         self::RELATION_PARTNER_STUDENT => "参加陪练：",
