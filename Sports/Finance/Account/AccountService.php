@@ -266,13 +266,16 @@ class AccountService extends BaseService
     private function createFreezeBilling(
         AccountObject $oOriAccount, AccountObject $oCurAccount, ActionObject $oAction)
     {
+        $beforeFreeze = $oOriAccount->getFreeze();
+        $curFreeze = $oCurAccount->getFreeze();
+
         $oBilling = new BillingObject();
         $oBilling->setAccountId($oCurAccount->getId())
             ->setType(Finance::ACCOUNT_FREEZE)
             ->setActionId($oAction->getId())
-            ->setAccountBefore($oOriAccount->getFreeze())
-            ->setAccountChange($oAction->getAmount())
-            ->setAccountAfter($oCurAccount->getFreeze())
+            ->setAccountBefore($beforeFreeze)
+            ->setAccountChange(($curFreeze - $beforeFreeze >= 0 ? 1 : -1) * $oAction->getAmount())
+            ->setAccountAfter($curFreeze)
             ->setRelationId($oAction->getRelationId())
             ->setRelationType($oAction->getRelationType());
 

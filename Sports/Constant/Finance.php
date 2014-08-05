@@ -40,6 +40,8 @@ class Finance
     const RELATION_CUSTOM_IN = 10;//自定义费用得钱方
     const RELATION_CUSTOM_OUT = 11;//自定义费用出钱方
     const RELATION_BUY_INSTANT_ORDER = 12;//购买即时订单
+    const RELATION_CANCEL_INSTANT_ORDER = 13;//取消购买即时订单
+    const RELATION_TERMINATE_INSTANT_ORDER = 14;//执行中止即时订单
 
     //账户类型
     const ACCOUNT_BALANCE = 1;  //余额
@@ -58,6 +60,8 @@ class Finance
         self::RELATION_TRAIN_STUDENT => "参加培训：",
         self::RELATION_CUSTOM_IN => "费用增加：",
         self::RELATION_CUSTOM_OUT => "费用扣除：",
-        self::RELATION_BUY_INSTANT_ORDER => '购买场地'
+        self::RELATION_BUY_INSTANT_ORDER => '购买场地：',
+        self::RELATION_CANCEL_INSTANT_ORDER => '取消场地：',
+        self::RELATION_TERMINATE_INSTANT_ORDER => '中止打球：',
     );
 }
