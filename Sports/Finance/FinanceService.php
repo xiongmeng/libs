@@ -105,9 +105,10 @@ class FinanceService extends BaseService
             }
 
             foreach($aActions as $oAction){
-                $oAction->setOperateId($iOperateId)
-                    ->setRelationId($oOperate->getRelationId())
-                    ->setRelationType($oOperate->getRelationType());
+                $oAction->setOperateId($iOperateId)->setRelationId($oOperate->getRelationId());
+
+                $relationType = $oAction->getRelationType();
+                empty($relationType) && $oAction->setRelationType($oOperate->getRelationType());
 
                 $this->executionAction($oAction);
             }
