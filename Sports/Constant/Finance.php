@@ -42,6 +42,7 @@ class Finance
     const RELATION_BUY_INSTANT_ORDER = 12;//购买即时订单
     const RELATION_CANCEL_INSTANT_ORDER = 13;//取消购买即时订单
     const RELATION_TERMINATE_INSTANT_ORDER = 14;//执行中止即时订单
+    const RELATION_SELL_INSTANT_ORDER = 15;//售出即时订单
 
     //账户类型
     const ACCOUNT_BALANCE = 1;  //余额
@@ -63,5 +64,7 @@ class Finance
         self::RELATION_BUY_INSTANT_ORDER => '购买场地：',
         self::RELATION_CANCEL_INSTANT_ORDER => '取消场地：',
         self::RELATION_TERMINATE_INSTANT_ORDER => '中止打球：',
+        self::RELATION_SELL_INSTANT_ORDER => '售出场地：',
+
     );
 }
