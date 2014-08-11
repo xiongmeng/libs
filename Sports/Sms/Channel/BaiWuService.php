@@ -31,7 +31,7 @@ class BaiWuService extends Base
      * @throws \Sports\Exception\ParamsInvalidException
      * @throws \Exception
      */
-    private function curl($eAction, $aParams=array(), $sMethod='post')
+    private function curl($eAction, $aParams=array(), $sMethod=self::METHOD_POST)
     {
         if(empty($this->sBaseUrl)|| empty($this->sCorpId) || empty($this->sCorpPwd) || empty($this->sCorpService)){
             throw new ParamsInvalidException('please ensure method setProxy has been called');
@@ -42,7 +42,7 @@ class BaiWuService extends Base
 
         $this->setServerName($this->sBaseUrl);
 
-        $sRes = $this->quest($eAction, $aParamAll, self::METHOD_GET);
+        $sRes = $this->quest($eAction, $aParamAll, $sMethod);
 
         //解析返回的xml数据
         if($sRes != 0){
