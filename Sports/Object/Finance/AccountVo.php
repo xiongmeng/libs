@@ -17,7 +17,7 @@ class AccountVo extends Base
     protected $balance = null;
     public function getBalance()
     {
-        return intval($this->balance);
+        return $this->balance;
     }
 
     protected $freeze = null;
@@ -52,6 +52,6 @@ class AccountVo extends Base
 
     public function getAvailableAmount()
     {
-        return $this->getBalance() + $this->getCredit() - $this->getFreeze();
+        return $this->balance + $this->credit - $this->freeze;
     }
 }
