@@ -61,6 +61,9 @@ class BaiWuService extends Base
             return array('error'=>11,'message'=>'手机号或内容为空');
         }
 
+        //该死的百悟要求转码
+        $sMessage = iconv("UTF-8", "GBK", $sMessage);
+
         return $this->curl('/sms_send2.do',
             array("mobile" => $sPhone, 'msg_content' => $sMessage, 'corp_msg_id'=>$sCorpMsgId)
         );
