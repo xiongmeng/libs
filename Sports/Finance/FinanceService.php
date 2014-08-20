@@ -15,9 +15,17 @@ use Sports\Exception\ItemNotExistException;
 
 use Sports\Exception\LogicException;
 use Sports\Exception\ParamsInvalidException;
+use Zend\Db\Adapter\Adapter;
 
 class FinanceService extends BaseService
 {
+    private $autoTransaction;
+    public function __construct(Adapter $adapter, $autoTransaction = true)
+    {
+        parent::__construct($adapter);
+
+        $this->autoTransaction = $autoTransaction;
+    }
     /**
      * @param $iUserId
      * @param $ePurpose
@@ -92,7 +100,7 @@ class FinanceService extends BaseService
      */
     public function execute(OperateObject $oOperate)
     {
-        $this->transaction->startTransaction();
+        $this->autoTransaction && $this->transaction->startTransaction();
         try{
             //记录操作
             $oOperateService = new OperateService($this->getDbAdapter());
@@ -113,10 +121,10 @@ class FinanceService extends BaseService
                 $this->executionAction($oAction);
             }
 
-            $this->transaction->commit();
+            $this->autoTransaction && $this->transaction->commit();
             return $iOperateId;
         }catch (\Exception $e){
-            $this->transaction->rollback();
+            $this->autoTransaction && $this->transaction->rollback();
             throw $e;
         }
     }
