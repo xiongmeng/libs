@@ -29,7 +29,7 @@ class FinanceService extends BaseService
     /**
      * @param $iUserId
      * @param $ePurpose
-     * @return null|Account\AccountObject
+     * @return null|\Sports\Finance\Account\AccountObject
      */
     public function ensureAccountExisted($iUserId, $ePurpose)
     {
