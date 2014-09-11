@@ -140,4 +140,45 @@ class QueueService extends BaseService
             'completed_time' => time(),
         ), $oWhere);
     }
-}
+
+
+    private function push($sPhone, $sMsg, $iUserId= null, $iChannelId=Sms::CHANNEL_BAIWU, $iOrder = null)
+    {
+        $oDbTable = new TableGateway(Sms::TABLE_QUEUE, $this->getDbAdapter());
+        $oDbTable->insert(array(
+            'user_id' => $iUserId,
+            'channel_id' => $iChannelId,
+            'phone' => $sPhone,
+            'message' => $sMsg,
+            'status' => Sms::QUEUE_STATUS_PENDING,
+            'created_time' => time(),
+            'order' => time(),
+        ));
+
+        return $oDbTable->getLastInsertValue();
+    }
+
+    /**
+     * 添加到短信队列中
+     * @param $sPhone
+     * @param $sMeg
+     * @param $iUserId
+     * @param int $iChannelId
+     * @return int
+     */
+    public function sendAsync($sPhone, $sMeg, $iUserId, $iChannelId = Sms::CHANNEL_BAIWU)
+    {
+        return $this->push($sPhone, $sMeg, $iUserId, $iChannelId);
+    }
+
+    /**
+     * @param $sPhone
+     * @param $sMeg
+     * @param $iUserId
+     * @param int $iChannelId
+     */
+    public function sendSync($sPhone, $sMeg, $iUserId, $iChannelId = Sms::CHANNEL_BAIWU)
+    {
+        $this->push($sPhone, $sMeg, $iUserId, $iChannelId);
+        $this->sendLoop(10);
+    }}
